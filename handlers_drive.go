@@ -14,8 +14,7 @@ import (
 	"github.com/prasmussen/gdrive/drive"
 )
 
-const ClientId = os.Getenv("GOOGLE_API_CLIENT_ID")
-const ClientSecret = os.Getenv("GOOGLE_API_CLIENT_SECRET")
+
 const TokenFilename = "token_v2.json"
 const DefaultCacheFileName = "file_cache.json"
 
@@ -341,6 +340,8 @@ func aboutExportHandler(ctx cli.Context) {
 }
 
 func getOauthClient(args cli.Arguments) (*http.Client, error) {
+	ClientId := os.Getenv("GOOGLE_API_CLIENT_ID")
+	ClientSecret := os.Getenv("GOOGLE_API_CLIENT_SECRET")
 	if args.String("refreshToken") != "" && args.String("accessToken") != "" {
 		ExitF("Access token not needed when refresh token is provided")
 	}
